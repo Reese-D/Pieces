@@ -115,13 +115,13 @@ using namespace::std;
   }
 
 int main(int argc, char* argv[]){
-  
+
   char* boardJSON = argv[2];
-  
+
   char* boardStates = strtok(boardJSON, "[]");
-  
+
   boardStates = strtok(NULL, "[]");
-  
+
   char* state = strtok(boardStates, ",");
   vector<char> board;
   while(state != NULL)
@@ -130,9 +130,14 @@ int main(int argc, char* argv[]){
     board.push_back(tok);
     state = strtok(NULL,",");
   }
-  
+
   char* color = argv[4];
   int time = atoi(argv[6]);
   Player myPlayer = Player(board, color[0], time);
+  vector<int> validMoves = myPlayer.checkValidMoves(myPlayer.board);
+  for(int i = 0; i < validMoves.size(); i++)
+  {
+    printf("%i\n");
+  }
   return 0;
 }
