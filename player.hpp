@@ -20,7 +20,7 @@ public:
   char checkBelow(int index, std::vector<char> *board);
   char checkLeft(int index, std::vector<char> *board);
   char checkRight(int index, std::vector<char> *board);
-  void scoreBoard();
+  void scoreBoard(std::vector<char> *board);
   std::vector<int>* checkValidMoves(std::vector<char> *board);
   void movesHelper(int index, std::vector<int> *validMoves, std::vector<char> *board);
 private:

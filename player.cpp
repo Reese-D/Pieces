@@ -81,7 +81,26 @@ using namespace::std;
       return checkHelper(index, RIGHT, board);
     return 'x';
   }
-  void Player::scoreBoard(){}
+
+  void Player::scoreBoard(std::vector<char> *board){
+    int scoreUs = 0;
+    int scoreEnemy = 0;
+    int score;
+    for(int x = 0; x < this->board.size(); x++){
+      if(this->board.at(x) == color){
+        scoreUs++;
+      }else if(this->board.at(x) == opposingColor){
+        scoreEnemy++;
+      }
+    }
+    score = scoreUs - scoreEnemy;
+    if(scoreEnemy == 0){
+      score = 10000;
+    }
+    if(scoreUs == 0){
+      score = -10000;
+    }
+  }
 
   /* takes a given board state and provides all possible valid moves
   * ours: a vector of all of the indexes of our pieces on the board
