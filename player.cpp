@@ -10,6 +10,16 @@ initial board structure for the Othello game
 #define RIGHT 1
 
   //Declare functions
+  bool Player::checkRightBounds(int index){
+    if((index + 1) % 8 == 0)
+      return false;
+    return true;
+  }
+  bool Player::checkLeftBounds(int index){
+    if((index) % 8 == 0)
+      return false;
+    return true;
+  }
   char Player::checkHelper(int index, int direction){
     try{
       return board.at(index + direction);
@@ -20,16 +30,24 @@ initial board structure for the Othello game
     return 'x';
   }
   char Player::checkAboveRight(int index){
-    return checkHelper(index, ABOVE + RIGHT);
+    if(checkRightBounds(index))
+      return checkHelper(index, ABOVE + RIGHT);
+    return 'x';
   }
   char Player::checkAboveLeft(int index){
-    return checkHelper(index, ABOVE + LEFT);
+    if(checkLeftBounds(index))
+      return checkHelper(index, ABOVE + LEFT);
+    return 'x';
   }
   char Player::checkBelowLeft(int index){
-    return checkHelper(index, BELOW + LEFT);
+    if(checkLeftBounds(index))
+      return checkHelper(index, BELOW + LEFT);
+    return 'x';
   }
   char Player::checkBelowRight(int index){
-    return checkHelper(index, BELOW + RIGHT);
+    if(checkRightBounds(index))
+      return checkHelper(index, BELOW + RIGHT);
+    return 'x';
   }
   char Player::checkAbove(int index){
     return checkHelper(index, ABOVE);
@@ -38,10 +56,14 @@ initial board structure for the Othello game
     return checkHelper(index, BELOW);
   }
   char Player::checkLeft(int index){
-    return checkHelper(index, LEFT);
+    if(checkLeftBounds(index))
+      return checkHelper(index, LEFT);
+    return 'x';
   }
   char Player::checkRight(int index){
-    return checkHelper(index, RIGHT);
+    if(checkRightBounds(index))
+      return checkHelper(index, RIGHT);
+    return 'x';
   }
   void Player::scoreBoard(){}
   std::vector<int> Player::checkValidMove(){

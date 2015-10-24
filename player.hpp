@@ -8,6 +8,8 @@ public:
   Player(){
     board.reserve(64);
   }
+  bool checkRightBounds(int index);
+  bool checkLeftBounds(int index);
   char checkAboveRight(int index);
   char checkAboveLeft(int index);
   char checkBelowLeft(int index);
