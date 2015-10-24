@@ -38,7 +38,8 @@ using namespace::std;
   }
   char Player::checkHelper(int index, int direction, std::vector<char> *board){
     try{
-      return this->board.at(index + direction);
+      if(checkLeftBounds(index + direction) && checkRightBounds(index + direction))
+        return this->board.at(index + direction);
     }catch(std::out_of_range o){
       std::cout<<o.what()<<std::endl;
     }
