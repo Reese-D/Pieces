@@ -16,7 +16,7 @@ using namespace::std;
   Player::Player(vector<char> in_board, char in_color, int in_time)
   {
     board = in_board;
-    
+
     color = in_color;
     if(in_color == 'w')
       opposingColor = 'b';
@@ -153,6 +153,6 @@ int main(int argc, char* argv[]){
   printf("\n%s move: %i\n", color, validMoves->at(randomNumber));
   int move = validMoves->at(randomNumber);
   delete validMoves;
-  
+  delete myPlayer;
   return move;
 }
