@@ -5,6 +5,12 @@ using namespace::std;
 class Player{
 
 public:
+  struct node{
+  node *parent;
+  std::vector<node*> children;
+  std::vector<int> boardState;
+  int boardScore;
+};
   std::vector<char> board;
   char color;
   int time;
