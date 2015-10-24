@@ -160,11 +160,11 @@ using namespace::std;
     checkValidMoves(board);
   }
 
-  td::vector<int> Player::updatedBoard(int index, std::vector<char> *board){
+  std::vector<int> Player::updatedBoard(int index, std::vector<char> *board){
     int listOfDirections [] = {-7,-8,-9,-1,1,7,8,9};
     std::vector<int> directions(listOfDirections, listOfDirections + sizeof(listOfDirections) / sizeof(int) );
     for(int y = 0; y < directions.size(); y++){
-      offset = directions.at(y);
+      int offset = directions.at(y);
       while(checkHelper(index, offset, board) == opposingColor){
         index +=offset;
       }
