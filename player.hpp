@@ -19,5 +19,5 @@ public:
   void scoreBoard();
   std::vector<int> checkValidMove();
 private:
-  char checkHelper(int index);
+  char checkHelper(int index, int direction);
 };
