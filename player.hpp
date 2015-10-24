@@ -31,5 +31,6 @@ public:
   void movesHelper(int index, std::vector<int> *validMoves, std::vector<char> *board);
 private:
   char checkHelper(int index, int direction, std::vector<char> *board);
+  node createTree(std::vector<char> *board);
 
 };
