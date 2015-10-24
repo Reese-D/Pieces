@@ -140,6 +140,19 @@ using namespace::std;
         validMoves->push_back(index + x);
       }
     }
+    for(int i = 0; i < 64; i++)
+    {
+      if(board->at(i) != '-')
+      {
+        for(int j = 0; j < validMoves->size(); j++)
+        {
+          if(validMoves->at(j) == i)
+          {
+            validMoves->erase(validMoves->begin()+j);
+          }
+        }
+      }
+    }
   }
 
   Player::node createTree(std::vector<char> *board){
