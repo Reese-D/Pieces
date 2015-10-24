@@ -3,11 +3,22 @@ initial board structure for the Othello game
 */
 //using namespace std;
 #include "player.hpp"
+#include <stdlib.h>
 #include <iostream>
 #define ABOVE -8
 #define BELOW 8
 #define LEFT -1
 #define RIGHT 1
+
+using namespace::std;
+
+  Player::Player(vector<char> in_board, char in_color, int in_time)
+  {
+    board = in_board;
+    color = in_color;
+    time = in_time;
+    printf("Color: %c\nTime: %i\n", color, time);
+  }
 
   //Declare functions
   bool Player::checkRightBounds(int index){
@@ -73,6 +84,25 @@ initial board structure for the Othello game
     return temp;
   }
 
-int main(){
+int main(int argc, char* argv[]){
+  
+  char* boardJSON = argv[2];
+  
+  char* boardStates = strtok(boardJSON, "[]");
+  
+  boardStates = strtok(NULL, "[]");
+  
+  char* state = strtok(boardStates, ",");
+  vector<char> board;
+  while(state != NULL)
+  {
+    char tok = state[1];
+    board.push_back(tok);
+    state = strtok(NULL,",");
+  }
+  
+  char* color = argv[4];
+  int time = atoi(argv[6]);
+  Player myPlayer = Player(board, color[0], time);
   return 0;
 }

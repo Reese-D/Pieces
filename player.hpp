@@ -1,13 +1,14 @@
 #include <vector>
 
+using namespace::std;
+
 class Player{
 
 public:
   std::vector<char> board;
   char color;
-  Player(){
-    board.reserve(64);
-  }
+  int time;
+  Player(vector<char> in_board, char color, int time);
   bool checkRightBounds(int index);
   bool checkLeftBounds(int index);
   char checkAboveRight(int index);
