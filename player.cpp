@@ -142,7 +142,7 @@ using namespace::std;
     }
   }
 
-  node createTree(std::vector<char> *board){
+  Player::node createTree(std::vector<char> *board){
     //checkValidMoves(board);
   }
 int main(int argc, char* argv[]){
