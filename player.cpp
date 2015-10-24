@@ -5,6 +5,7 @@ initial board structure for the Othello game
 #include "player.hpp"
 #include <stdlib.h>
 #include <iostream>
+#include <time.h>
 #define ABOVE -8
 #define BELOW 8
 #define LEFT -1
@@ -22,7 +23,6 @@ using namespace::std;
     else
       opposingColor = 'w';
     time = in_time;
-    printf("Color: %c\nTime: %i\n", color, time);
   }
 
   //Declare functions
@@ -87,19 +87,18 @@ using namespace::std;
   * ours: a vector of all of the indexes of our pieces on the board
   * enemies: a vector of all the opposing players pieces on the board
   */
-  std::vector<int> Player::checkValidMoves(std::vector<char> *board){
+  std::vector<int>* Player::checkValidMoves(std::vector<char> *board){
     std::vector<int> *validMoves = new std::vector<int>();
     //look through the board
     for(int x = 0; x < this->board.size(); x++){
       if(this->board.at(x) == color){
         //if we find a piece of ours get all the valid moves around it
-        printf("checkValidMovesfawefawef\n");
         movesHelper(x, validMoves, board);
       }
       //TODO: check for repeats
       //TODO: find the number of stones captured
     }
-    return *validMoves;
+    return validMoves;
 
   }
 
@@ -107,14 +106,9 @@ using namespace::std;
     //keep going right until we get a value that isn't an opponents stone
     int listOfDirections [] = {-7,-8,-9,-1,1,7,8,9};
     std::vector<int> directions(listOfDirections, listOfDirections + sizeof(listOfDirections) / sizeof(int) );
-    for(int i = 0; i < 8; i++)
-    {
-      printf("asdfas: %i\n", directions.at(i));
-    }
     for(int y = 0; y < directions.size(); y++){
       int x = 0; //x is our offset from our piece
       bool flag = false;
-      printf("%c == %c\n", checkHelper(index + x, x, board), opposingColor);
       while(checkHelper(index + x, directions.at(y), board) == opposingColor)
       {
         x += directions.at(y);
@@ -148,13 +142,17 @@ int main(int argc, char* argv[]){
 
   char* color = argv[4];
   int time = atoi(argv[6]);
-  Player myPlayer = Player(board, color[0], time);
-  vector<int> validMoves = myPlayer.checkValidMoves(&board);
+  Player* myPlayer = new Player(board, color[0], time);
+  vector<int>* validMoves = myPlayer->checkValidMoves(&board);
+  int randomNumber = rand() % validMoves->size();
   printf("Valid Moves:\n");
-  printf("Size: %lu\n", validMoves.size());
-  for(int i = 0; i < validMoves.size(); i++)
+  for(int i = 0; i < validMoves->size(); i++)
   {
-    printf("%i\n", validMoves.at(i));
+    printf("\t%i", validMoves->at(i));
   }
-  return 0;
+  printf("\n%s move: %i\n", color, validMoves->at(randomNumber));
+  int move = validMoves->at(randomNumber);
+  delete validMoves;
+  
+  return move;
 }
