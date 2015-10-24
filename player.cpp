@@ -16,8 +16,8 @@ initial board structure for the Othello game
     }catch(std::out_of_range o){
       std::cout<<o.what()<<std::endl;
     }
-    //This statement shouldn't ever be reached
-    return board.at(0);
+    //returns an x if the value is out of bounds
+    return 'x';
   }
   char Player::checkAboveRight(int index){
     return checkHelper(index, ABOVE + RIGHT);
