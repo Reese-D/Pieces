@@ -28,6 +28,7 @@ public:
   char checkRight(int index, std::vector<char> *board);
   void scoreBoard(std::vector<char> *board);
   std::vector<int>* checkValidMoves(std::vector<char> *board);
+  std::vector<int> updatedBoard(int index, std::vector<char> *board);
   void movesHelper(int index, std::vector<int> *validMoves, std::vector<char> *board);
 private:
   char checkHelper(int index, int direction, std::vector<char> *board);

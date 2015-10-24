@@ -143,7 +143,18 @@ using namespace::std;
   }
 
   Player::node createTree(std::vector<char> *board){
-    //checkValidMoves(board);
+    checkValidMoves(board);
+  }
+
+  td::vector<int> updatedBoard(int index, std::vector<char> *board){
+    int listOfDirections [] = {-7,-8,-9,-1,1,7,8,9};
+    std::vector<int> directions(listOfDirections, listOfDirections + sizeof(listOfDirections) / sizeof(int) );
+    for(int y = 0; y < directions.size(); y++){
+      offset = directions.at(y);
+      while(checkHelper(index, offset, board) == opposingColor){
+        index +=offset;
+      }
+    }
   }
 int main(int argc, char* argv[]){
 
